@@ -75,15 +75,15 @@ order by rp._order \
 
   render() {
     return (
-      this.state.loading? (
+      <View style={styles.top40}>
+      {this.state.loading? (
         <View style={styles.container}>
           <Text style={styles.title}>รอสักครู่</Text>
         </View>
-      ): ( <View style={styles.top40}>
-              <SGListView dataSource={this.state.dataSource}
-                renderRow={this.renderRow.bind(this)}
-                automaticallyAdjustContentInsets={true} /></View>)
-    );
+      ): ( <SGListView dataSource={this.state.dataSource}
+                     renderRow={this.renderRow.bind(this)}
+                     automaticallyAdjustContentInsets={true} />)
+    }</View>);
   }
 };
 

@@ -33,7 +33,7 @@ class BusListContainerView extends Component {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     var db = SQLite.openDatabase({name : "db.sqlite3", createFromLocation : 1}, this.successCB, this.errorCB);
     db.transaction((tx) => {
-      tx.executeSql("SELECT id, name FROM buses_bus LIMIT 10", [], (tx, results) => {
+      tx.executeSql("SELECT id, name FROM buses_bus", [], (tx, results) => {
           console.log("Query completed");
           var len = results.rows.length;
           var _results = [];
@@ -53,9 +53,8 @@ class BusListContainerView extends Component {
 
   rowPressed(data) {
     this.props.navigator.push({
-      title: data.name,
-      component: BusLineListContainerView,
-      passProps: {id: data.id}
+      busline: true,
+      bus: data,
     });
   }
 
@@ -77,15 +76,15 @@ class BusListContainerView extends Component {
 
   render() {
     return (
-      this.state.loading? (
+      <View style={styles.top40}>
+      {this.state.loading? (
         <View style={styles.container}>
           <Text style={styles.title}>รอสักครู่</Text>
         </View>
-      ): ( <View style={styles.top40}>
-              <SGListView dataSource={this.state.dataSource}
-                renderRow={this.renderRow.bind(this)}
-                automaticallyAdjustContentInsets={true} /></View>)
-    );
+      ): ( <SGListView dataSource={this.state.dataSource}
+                     renderRow={this.renderRow.bind(this)}
+                     automaticallyAdjustContentInsets={true} />)
+    }</View>);
   }
 };
 

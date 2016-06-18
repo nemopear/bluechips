@@ -13,25 +13,14 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-var BusListContainerView = require('../wherebus/js/components/buslist');
+var Dashboard = require('../wherebus/js/dashboard');
 
 class wherebus extends Component {
   render() {
     return (
-      <NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'สายรถเมล์',
-          component: BusListContainerView,
-        }}/>
+      <Dashboard />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
 
 AppRegistry.registerComponent('wherebus', () => wherebus);
