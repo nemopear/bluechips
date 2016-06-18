@@ -10,7 +10,7 @@ import {
   ListView
 } from 'react-native';
 
-var BusLineListContainerView = require('../components/busline');
+var Header = require('../common/header');
 var SGListView = require('react-native-sglistview');
 
 class BusListContainerView extends Component {
@@ -33,7 +33,7 @@ class BusListContainerView extends Component {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     var db = SQLite.openDatabase({name : "db.sqlite3", createFromLocation : 1}, this.successCB, this.errorCB);
     db.transaction((tx) => {
-      tx.executeSql("SELECT id, name FROM buses_bus", [], (tx, results) => {
+      tx.executeSql("SELECT id, name, bus_name FROM buses_bus", [], (tx, results) => {
           console.log("Query completed");
           var len = results.rows.length;
           var _results = [];
@@ -65,7 +65,7 @@ class BusListContainerView extends Component {
         <View>
           <View style={styles.rowContainer}>
             <Text style={styles.text}>
-              {rowData.name}
+              {rowData.bus_name}
             </Text>
           </View>
           <View style={styles.separator}/>
@@ -76,7 +76,11 @@ class BusListContainerView extends Component {
 
   render() {
     return (
-      <View style={styles.top40}>
+      <View style={styles.content}>
+        <Header
+          title={this.props.title}
+          style={styles.header}
+        />
       {this.state.loading? (
         <View style={styles.container}>
           <Text style={styles.title}>รอสักครู่</Text>
@@ -84,7 +88,7 @@ class BusListContainerView extends Component {
       ): ( <SGListView dataSource={this.state.dataSource}
                      renderRow={this.renderRow.bind(this)}
                      automaticallyAdjustContentInsets={true} />)
-    }</View>);
+      }</View>);
   }
 };
 
@@ -107,9 +111,11 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  top40: {
-    marginTop: 60,
+  content: {
     flex: 1,
+  },
+  header: {
+    backgroundColor: '#47BFBF',
   }
 });
 

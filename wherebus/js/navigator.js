@@ -79,11 +79,13 @@ var _Navigator = React.createClass({
       return (
         <BusLineListContainerView
           id={route.bus.id}
+          name={route.bus.name}
+          title={route.bus.bus_name}
           navigator={navigator}
         />
       );
     }
-    return <BusListContainerView
+    return <BusListContainerView title='Bus List'
               navigator={navigator} />;
 
   },

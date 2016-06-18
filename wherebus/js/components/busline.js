@@ -10,7 +10,9 @@ import {
   ListView
 } from 'react-native';
 
+var Header = require('../common/header');
 var SGListView = require('react-native-sglistview');
+
 class BusLineListContainerView extends Component {
 
   errorCB(err) {
@@ -75,7 +77,18 @@ order by rp._order \
 
   render() {
     return (
-      <View style={styles.top40}>
+      <View style={styles.content}>
+        <Header
+          title={this.props.title}
+          style={styles.header}
+          leftItem={{
+            title: 'Back',
+            onPress: () => this.props.navigator.pop(),
+          }}
+        />
+        <Text style={styles.title}>
+            {this.props.name}
+        </Text>
       {this.state.loading? (
         <View style={styles.container}>
           <Text style={styles.title}>รอสักครู่</Text>
@@ -106,9 +119,12 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  top40: {
-    marginTop: 60,
+  content: {
     flex: 1,
+  },
+  header: {
+    backgroundColor: '#999999',
+    height: 60
   }
 });
 
