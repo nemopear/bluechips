@@ -26,11 +26,11 @@ class DirectionFormView extends Component {
   }
 
   onPress() {
-    // call getValue() to get the values of the form
     var value = this.refs.form.getValue();
-    if (value) { // if validation fails, value will be null
-      console.log(value); // value here is an instance of Person
-    }
+    this.props.navigator.push({
+      direction: true,
+      data: value
+    });
   }
 
   render() {
