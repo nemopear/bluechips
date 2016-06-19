@@ -80,6 +80,10 @@ class BusListContainerView extends Component {
         <Header
           title={this.props.title}
           style={styles.header}
+          rightItem={{
+            title: 'Direction',
+            onPress: () => this.props.navigator.push({directionform: true})
+          }}
         />
       {this.state.loading? (
         <View style={styles.container}>

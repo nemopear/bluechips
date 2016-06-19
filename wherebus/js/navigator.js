@@ -6,6 +6,7 @@ var BackAndroid = require('BackAndroid');
 
 var BusListContainerView = require('../js/components/buslist');
 var BusLineListContainerView = require('../js/components/busline');
+var DirectionFormView = require('../js/components/directionform');
 
 var Navigator = require('Navigator');
 var StyleSheet = require('StyleSheet');
@@ -85,6 +86,16 @@ var _Navigator = React.createClass({
         />
       );
     }
+
+    if (route.directionform) {
+      return (
+        <DirectionFormView
+          title='Direction Form'
+          navigator={navigator}
+        />
+      );
+    }
+
     return <BusListContainerView title='Bus List'
               navigator={navigator} />;
 

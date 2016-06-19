@@ -9,6 +9,7 @@
     "react": "^15.1.0",
     "react-native": "0.27.2",
     "react-native-sglistview": "^0.3.2",
-    "react-native-sqlite-storage": "^2.1.6"
+    "react-native-sqlite-storage": "^2.1.6",
+    "tcomb-form-native": "^0.5.1"
   }
 }
